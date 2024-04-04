@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
   static ThemeData appLightTheme = ThemeData(
+      fontFamily: 'Montserrat',
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       useMaterial3: true,
       scaffoldBackgroundColor: Colors.white,
@@ -13,6 +14,7 @@ class AppTheme {
       displayLarge: TextStyle(
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.bold,
+          color: Colors.black,
           fontSize: 20.sp),
       displayMedium: TextStyle(
           fontFamily: 'Montserrat',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/app_routes.dart';
 import 'package:news_app/core/injection_container.dart';
 import 'package:news_app/features/home/presentation/pages/home_screen.dart';
 import 'core/app_theme.dart';
@@ -21,10 +22,10 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return BlocProvider<HomeBloc>(
             create: (context) => sl()..add(GetArticles()),
-            child: MaterialApp(
+            child: MaterialApp.router(
               title: 'Newz',
               theme: AppTheme.appLightTheme,
-              home: const HomeScreen(),
+              routerConfig: AppRoutes.router,
             ),
           );
         });
