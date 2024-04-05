@@ -13,10 +13,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this._getArticleUseCase) : super(HomeLoading()) {
     on<GetArticles>(onGetArticle);
+    on<SetHomeScreenLoading>(setHomeScreenLoading);
   }
 
   void onGetArticle(GetArticles event, Emitter<HomeState> emit) async {
-    Log.info("call get articale");
     Result result = await _getArticleUseCase();
     if (result.exception != null) {
       emit(HomeError(result.exception));
@@ -24,5 +24,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (result.exception == null) {
       emit(HomeSuccess(result.result));
     }
+  }
+
+  void setHomeScreenLoading(
+      SetHomeScreenLoading event, Emitter<HomeState> emit) async {
+    emit(HomeLoading());
   }
 }

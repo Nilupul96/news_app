@@ -2,8 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_colors.dart';
-import '../../../../core/helpers/app_logger.dart';
-import '../../../../core/helpers/utils.dart';
 import '../../domain/entities/article.dart';
 
 class TopNewsListTile extends StatelessWidget {

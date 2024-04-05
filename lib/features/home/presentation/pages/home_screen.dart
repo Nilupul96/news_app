@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/app_colors.dart';
 import 'package:news_app/features/home/presentation/widgets/top_news_list_tile.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/const/app_const.dart';
+import '../../../../core/injection_container.dart';
+import '../../../../core/shimmers/home_shimmer.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/category_news_list_item.dart';
 
@@ -38,27 +41,42 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBody() {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       if (state is HomeLoading) {
-        return const Center(child: CircularProgressIndicator());
+        return HomeShimmer();
       }
       if (state is HomeError) {
         return Center(child: Text('error ${state.exception}'));
       }
       if (state is HomeSuccess) {
-        return SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            children: [
-              _buildTopNewsSection(state),
-              const RSizedBox(
-                height: 20,
-              ),
-              _categoryMenuList(),
-              const RSizedBox(
-                height: 20,
-              ),
-              _buildNewsListByCategory(state),
-              const RSizedBox(
-                height: 20,
+        return RefreshIndicator(
+          onRefresh: () async {
+            BlocProvider.of<HomeBloc>(context, listen: false)
+                .add(const SetHomeScreenLoading());
+            BlocProvider.of<HomeBloc>(context, listen: false)
+                .add(const GetArticles());
+          },
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            controller: ScrollController(),
+            slivers: [
+              MultiSliver(
+                children: [
+                  _buildTopNewsSection(state),
+                  const RSizedBox(
+                    height: 20,
+                  ),
+                  SliverPinnedHeader(
+                      child: Container(
+                          padding: const EdgeInsets.only(bottom: 5),
+                          color: Colors.white,
+                          child: _categoryMenuList())),
+                  const RSizedBox(
+                    height: 20,
+                  ),
+                  _buildNewsListByCategory(state),
+                  const RSizedBox(
+                    height: 20,
+                  ),
+                ],
               ),
             ],
           ),
