@@ -12,10 +12,9 @@ class TopNewsListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Log.info("url ---${article.urlToImage}");
     return Container(
-      margin: EdgeInsets.only(left: 20.w),
-      width: ScreenUtil().screenWidth - 40.w,
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      width: ScreenUtil().screenWidth,
       decoration: BoxDecoration(
           color: AppColors.lightBlue.withOpacity(0.2),
           borderRadius: BorderRadius.circular(25)),
@@ -56,28 +55,28 @@ class TopNewsListTile extends StatelessWidget {
                           .displayLarge!
                           .copyWith(color: Colors.white),
                     ),
-                    const SizedBox(
-                      height: 12,
+                    SizedBox(
+                      height: 30.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(article.author ?? '',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(color: Colors.grey)),
-                        ),
-                        if (article.publishedAt != null)
-                          Text(
-                              '${Utils.getPostFormattedTime(article.publishedAt!)}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(color: Colors.grey))
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    // Expanded(
+                    //   child: Text(article.author ?? '',
+                    //       style: Theme.of(context)
+                    //           .textTheme
+                    //           .displaySmall!
+                    //           .copyWith(color: Colors.grey)),
+                    // ),
+                    // if (article.publishedAt != null)
+                    //   Text(
+                    //       '${Utils.getPostFormattedTime(article.publishedAt!)}',
+                    //       style: Theme.of(context)
+                    //           .textTheme
+                    //           .displaySmall!
+                    //           .copyWith(color: Colors.grey))
+                    //   ],
+                    // )
                   ],
                 ),
               )),

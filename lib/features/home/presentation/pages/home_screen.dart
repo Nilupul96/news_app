@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/app_colors.dart';
 import 'package:news_app/features/home/presentation/widgets/top_news_list_tile.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/const/app_const.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/category_news_list_item.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
+  final controller = PageController(keepPage: true);
 
   @override
   void initState() {
@@ -69,14 +71,43 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildTopNewsSection(HomeSuccess state) {
     return SizedBox(
       height: 450.h,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: state.articleList!.length,
-          physics: const ClampingScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return TopNewsListTile(article: state.articleList![index]);
-          }),
+      child: Stack(
+        children: [
+          PageView.builder(
+              controller: controller,
+              scrollDirection: Axis.horizontal,
+              itemCount: state.articleList!.length > 10
+                  ? 10
+                  : state.articleList!.length,
+              physics: const ClampingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return TopNewsListTile(article: state.articleList![index]);
+              }),
+          Positioned(
+              bottom: 20.h,
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                width: ScreenUtil().screenWidth - 40.w,
+                child: Center(
+                  child: SmoothPageIndicator(
+                      controller: controller,
+                      count: state.articleList!.length > 10
+                          ? 10
+                          : state.articleList!.length,
+                      effect: WormEffect(
+                          dotWidth: 20.w,
+                          type: WormType.thinUnderground,
+                          activeDotColor: AppColors.primaryRed,
+                          dotColor: AppColors.lightBlue,
+                          spacing: 1,
+                          radius: 5,
+                          dotHeight: 5),
+                      onDotClicked: (index) {}),
+                ),
+              ))
+        ],
+      ),
     );
   }
 
