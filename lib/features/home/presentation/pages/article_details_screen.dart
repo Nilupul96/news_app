@@ -5,6 +5,8 @@ import 'package:news_app/features/home/domain/entities/article.dart';
 import 'package:news_app/features/home/presentation/widgets/custom_sliver_delegate.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../../../core/helpers/utils.dart';
+
 class ArticleDetailsScreen extends StatefulWidget {
   final ArticleEntity? article;
   static const routeName = "/article-details-screen";
@@ -62,12 +64,19 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                             padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
                             child: Column(
                               children: [
-                                Text(
-                                  '${widget.article!.author ?? ''}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(color: Colors.black),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    "${Utils.getPostFormattedTime(widget.article!.publishedAt!)}",
+                                    textAlign: TextAlign.start,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(color: Colors.black),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20.h,
                                 ),
                                 Text(
                                   '${widget.article!.description}',
@@ -75,6 +84,9 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                                       .textTheme
                                       .displaySmall!
                                       .copyWith(color: Colors.black),
+                                ),
+                                SizedBox(
+                                  height: 20.h,
                                 ),
                                 Text(
                                   '${widget.article!.content}',
@@ -85,6 +97,20 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                                 ),
                                 SizedBox(
                                   height: 20.h,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "By ${widget.article!.author ?? 'Unknown'}",
+                                    textAlign: TextAlign.start,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(color: Colors.black),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 120.h,
                                 )
                               ],
                             ),

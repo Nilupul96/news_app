@@ -26,6 +26,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   animated_text_kit: ^4.2.2
   lottie: ^3.1.0
+  flutter_animate: ^4.5.0
 
 
   # The following adds the Cupertino Icons font to your application.

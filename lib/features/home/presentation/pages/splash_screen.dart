@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:news_app/core/app_assets.dart';
 import 'package:news_app/core/const/app_const.dart';
 import 'package:news_app/features/home/presentation/pages/home_screen.dart';
+import 'package:news_app/features/home/presentation/pages/onjboarding_screen.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../core/helpers/app_logger.dart';
@@ -46,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
             AnimatedTextKit(
                 isRepeatingAnimation: false,
                 onFinished: () {
-                  context.goNamed(HomeScreen.routeName);
+                  context.goNamed(OnboardingScreen.routeName);
                 },
                 animatedTexts: [
                   WavyAnimatedText(AppConst.appName,
