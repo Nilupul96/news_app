@@ -6,7 +6,6 @@ import 'package:news_app/features/home/presentation/widgets/top_news_list_tile.d
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/const/app_const.dart';
-import '../../../../core/injection_container.dart';
 import '../../../../core/shimmers/home_shimmer.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/category_news_list_item.dart';
@@ -33,7 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("NewZ"),
+          title: Text(AppConst.appName,
+              style: TextStyle(
+                  fontFamily: 'Blackness',
+                  color: AppColors.primaryRed,
+                  fontSize: 36.sp)),
         ),
         body: _buildBody());
   }
@@ -41,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBody() {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       if (state is HomeLoading) {
-        return HomeShimmer();
+        return const HomeShimmer();
       }
       if (state is HomeError) {
         return Center(child: Text('error ${state.exception}'));

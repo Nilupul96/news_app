@@ -24,6 +24,8 @@ dependencies:
   shimmer: ^3.0.0
   pull_to_refresh: ^2.0.0
   smooth_page_indicator: ^1.1.0
+  animated_text_kit: ^4.2.2
+  lottie: ^3.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -67,4 +69,11 @@ flutter:
         - asset: lib/assets/fonts/Montserrat-SemiBold.ttf
         - asset: lib/assets/fonts/Montserrat-Medium.ttf
         - asset: lib/assets/fonts/Montserrat-Regular.ttf
+    - family: Abys
+      fonts:
+        - asset: lib/assets/fonts/Abys-Regular.otf
+    - family: Blackness
+      fonts:
+        - asset: lib/assets/fonts/Blackness.ttf
+        
        

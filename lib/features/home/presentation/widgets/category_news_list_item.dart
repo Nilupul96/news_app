@@ -33,9 +33,12 @@ class CategoryNewsListTile extends StatelessWidget {
                 height: 100,
                 color: Colors.white,
                 child: article.urlToImage != null
-                    ? CachedNetworkImage(
-                        imageUrl: article.urlToImage!,
-                        fit: BoxFit.cover,
+                    ? Hero(
+                        tag: article.urlToImage!,
+                        child: CachedNetworkImage(
+                          imageUrl: article.urlToImage!,
+                          fit: BoxFit.cover,
+                        ),
                       )
                     : const SizedBox(),
               ),

@@ -21,10 +21,13 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       child: SizedBox(
         width: double.infinity,
         child: imageUrl != null
-            ? CachedNetworkImage(
-                imageUrl: imageUrl!,
-                fit: BoxFit.cover,
-                height: double.infinity,
+            ? Hero(
+                tag: imageUrl!,
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl!,
+                  fit: BoxFit.cover,
+                  height: double.infinity,
+                ),
               )
             : Container(
                 width: double.infinity,

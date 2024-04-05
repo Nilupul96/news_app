@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/features/home/domain/entities/article.dart';
@@ -42,13 +42,18 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                         child: Container(
                           padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
                           color: Colors.white,
-                          child: Text(
-                            '${widget.article!.title}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayLarge!
-                                .copyWith(color: Colors.black),
-                          ),
+                          child: AnimatedTextKit(
+                              isRepeatingAnimation: false,
+                              animatedTexts: [
+                                RotateAnimatedText(
+                                  '${widget.article!.title}',
+                                  rotateOut: false,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .displayLarge!
+                                      .copyWith(color: Colors.black),
+                                ),
+                              ]),
                         ),
                       ),
                       Column(
