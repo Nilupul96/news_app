@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:news_app/core/app_assets.dart';
 import 'package:news_app/core/const/app_const.dart';
+import 'package:news_app/core/helpers/local_storage.dart';
 import 'package:news_app/features/home/presentation/pages/home_screen.dart';
 import 'package:news_app/features/home/presentation/pages/onjboarding_screen.dart';
 
@@ -20,6 +21,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Future<void> handleNavigation() async {
+    bool? isShowedOnboarding = await LocalStorage().getShowOnboarding();
+    if (!mounted) return;
+    Log.debug("Is showed onboarding --$isShowedOnboarding");
+    if (isShowedOnboarding != null && isShowedOnboarding) {
+      context.goNamed(HomeScreen.routeName);
+      return;
+    }
+    context.goNamed(OnboardingScreen.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
             AnimatedTextKit(
                 isRepeatingAnimation: false,
                 onFinished: () {
-                  context.goNamed(OnboardingScreen.routeName);
+                  handleNavigation();
                 },
                 animatedTexts: [
                   WavyAnimatedText(AppConst.appName,

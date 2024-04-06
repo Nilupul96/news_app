@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/app_assets.dart';
+import 'package:news_app/core/helpers/local_storage.dart';
 import 'package:news_app/features/home/presentation/pages/home_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/app_colors.dart';
@@ -219,8 +220,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       MainBtn(
                         lbl: isLastPage ? "get Started" : "Next",
-                        onClick: () {
+                        onClick: () async {
                           if (isLastPage) {
+                            LocalStorage().setShowOnboarding(true);
                             context.goNamed(HomeScreen.routeName);
                             return;
                           }
