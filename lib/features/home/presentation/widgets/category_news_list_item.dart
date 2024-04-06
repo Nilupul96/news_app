@@ -55,20 +55,14 @@ class CategoryNewsListTile extends StatelessWidget {
                     '${article.title}',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 5,
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium!
-                        .copyWith(color: Colors.black),
+                    style: Theme.of(context).textTheme.displayMedium!,
                   ),
                   if (article.publishedAt != null)
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
                           '${Utils.getPostFormattedTime(article.publishedAt!)}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(color: Colors.black)),
+                          style: Theme.of(context).textTheme.displaySmall!),
                     )
                 ],
               ),

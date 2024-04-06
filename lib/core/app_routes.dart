@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:news_app/features/home/presentation/pages/onjboarding_screen.dart';
+import 'package:news_app/features/home/presentation/pages/settings_screen.dart';
 import 'package:news_app/features/home/presentation/pages/splash_screen.dart';
 import '../features/home/domain/entities/article.dart';
 import '../features/home/presentation/pages/article_details_screen.dart';
@@ -30,6 +31,11 @@ class AppRoutes {
         builder: (context, state) => ArticleDetailsScreen(
           article: state.extra as ArticleEntity,
         ),
+      ),
+      GoRoute(
+        name: SettingsScreen.routeName,
+        path: '/settings',
+        builder: (context, state) => SettingsScreen(),
       ),
     ],
   );

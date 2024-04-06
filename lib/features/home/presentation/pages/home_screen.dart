@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:news_app/core/app_colors.dart';
+import 'package:news_app/core/helpers/extentions.dart';
+import 'package:news_app/features/home/presentation/pages/settings_screen.dart';
 import 'package:news_app/features/home/presentation/widgets/top_news_list_tile.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -37,6 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Blackness',
                   color: AppColors.primaryRed,
                   fontSize: 36.sp)),
+          actions: [
+            IconButton(
+                padding: EdgeInsets.only(right: 20.w),
+                onPressed: () => context.pushNamed(SettingsScreen.routeName),
+                icon: Icon(Icons.settings))
+          ],
         ),
         body: _buildBody());
   }
@@ -67,11 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const RSizedBox(
                     height: 20,
                   ),
-                  SliverPinnedHeader(
-                      child: Container(
-                          padding: const EdgeInsets.only(bottom: 5),
-                          color: Colors.white,
-                          child: _categoryMenuList())),
+                  SliverPinnedHeader(child: _categoryMenuList()),
                   const RSizedBox(
                     height: 20,
                   ),
@@ -133,11 +138,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _categoryMenuList() {
-    return SizedBox(
+    return Container(
+      color: context.isDark ? AppColors.black : Colors.white,
+      margin: EdgeInsets.only(bottom: 5),
       height: 44.h,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: AppConst.CATEGORY_MENU_LIST.length,
+          primary: true,
           physics: const ClampingScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
@@ -147,24 +155,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   selectedIndex = index;
                 });
               },
-              child: Material(
-                child: Container(
-                  margin: EdgeInsets.only(left: 20.w),
-                  decoration: BoxDecoration(
-                      color: selectedIndex == index
-                          ? AppColors.darkblue
-                          : AppColors.primaryGrey,
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.h, vertical: 12.h),
-                    child: Text(
-                      AppConst.CATEGORY_MENU_LIST[index],
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: selectedIndex == index
-                              ? Colors.white
-                              : Colors.black),
-                    ),
+              child: Container(
+                margin: EdgeInsets.only(left: 20.w),
+                decoration: BoxDecoration(
+                    color: selectedIndex == index
+                        ? AppColors.darkblue
+                        : AppColors.lightBlue.withOpacity(0.9),
+                    borderRadius: BorderRadius.circular(16)),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.h, vertical: 12.h),
+                  child: Text(
+                    AppConst.CATEGORY_MENU_LIST[index],
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        color: selectedIndex == index
+                            ? Colors.white
+                            : Colors.black),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/app_colors.dart';
+import 'package:news_app/core/helpers/extentions.dart';
 import 'package:news_app/core/shimmers/shimmer_config.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -20,8 +21,12 @@ class HomeShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       direction: ShimmerConfig.shimmerDirection,
-      baseColor: ShimmerConfig.baseColor,
-      highlightColor: ShimmerConfig.highlightColor,
+      baseColor: context.isDark
+          ? ShimmerConfig.darkModeBaseColor
+          : ShimmerConfig.baseColor,
+      highlightColor: context.isDark
+          ? ShimmerConfig.darkModeHighlightColor
+          : ShimmerConfig.highlightColor,
       period: ShimmerConfig.period,
       child: SingleChildScrollView(
         child: Padding(

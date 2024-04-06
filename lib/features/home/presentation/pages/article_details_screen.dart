@@ -1,10 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/helpers/extentions.dart';
 import 'package:news_app/features/home/domain/entities/article.dart';
 import 'package:news_app/features/home/presentation/widgets/custom_sliver_delegate.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../../../core/app_colors.dart';
 import '../../../../core/helpers/utils.dart';
 
 class ArticleDetailsScreen extends StatefulWidget {
@@ -43,18 +45,16 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                       SliverPinnedHeader(
                         child: Container(
                           padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
-                          color: Colors.white,
+                          color:
+                              context.isDark ? AppColors.black : Colors.white,
                           child: AnimatedTextKit(
                               isRepeatingAnimation: false,
                               animatedTexts: [
-                                RotateAnimatedText(
-                                  '${widget.article!.title}',
-                                  rotateOut: false,
-                                  textStyle: Theme.of(context)
-                                      .textTheme
-                                      .displayLarge!
-                                      .copyWith(color: Colors.black),
-                                ),
+                                RotateAnimatedText('${widget.article!.title}',
+                                    rotateOut: false,
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge!),
                               ]),
                         ),
                       ),
@@ -71,29 +71,24 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .displaySmall!
-                                        .copyWith(color: Colors.black),
+                                        .displaySmall!,
                                   ),
                                 ),
                                 SizedBox(
                                   height: 20.h,
                                 ),
                                 Text(
-                                  '${widget.article!.description}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(color: Colors.black),
+                                  widget.article!.description ?? '',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall!,
                                 ),
                                 SizedBox(
                                   height: 20.h,
                                 ),
                                 Text(
-                                  '${widget.article!.content}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(color: Colors.black),
+                                  widget.article!.content ?? '',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall!,
                                 ),
                                 SizedBox(
                                   height: 20.h,
@@ -105,8 +100,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .displaySmall!
-                                        .copyWith(color: Colors.black),
+                                        .displaySmall!,
                                   ),
                                 ),
                                 SizedBox(
