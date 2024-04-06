@@ -1,6 +1,4 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/app_assets.dart';
@@ -72,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Container(
                     color: AppColors.lightBlue,
                     child: OnboardingPage(
-                      image: AppAssets.onboarding4,
+                      image: AppAssets.onboarding1,
                       textList: [
                         Text(
                           "Get the latest",
@@ -108,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Container(
                     color: AppColors.lightBlue,
                     child: OnboardingPage(
-                      image: AppAssets.onboarding2,
+                      image: AppAssets.onboarding3,
                       textList: [
                         RichText(
                             text: TextSpan(
@@ -153,7 +151,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Container(
                     color: AppColors.lightBlue,
                     child:
-                        OnboardingPage(image: AppAssets.onboarding3, textList: [
+                        OnboardingPage(image: AppAssets.onboarding2, textList: [
                       Text(
                         "From art to",
                         style: Theme.of(context)

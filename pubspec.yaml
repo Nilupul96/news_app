@@ -29,6 +29,7 @@ dependencies:
   flutter_animate: ^4.5.0
   adaptive_theme: ^3.6.0
   shared_preferences: ^2.2.2
+  country_code_picker: ^3.0.0
   
 
 
