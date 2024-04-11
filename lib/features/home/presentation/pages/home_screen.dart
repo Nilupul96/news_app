@@ -40,12 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Blackness',
                   color: AppColors.primaryRed,
                   fontSize: 36.sp)),
-          actions: [
-            IconButton(
-                padding: EdgeInsets.only(right: 20.w),
-                onPressed: () => context.pushNamed(SettingsScreen.routeName),
-                icon: Icon(Icons.settings))
-          ],
         ),
         body: _buildBody());
   }
@@ -73,9 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
               MultiSliver(
                 children: [
                   _buildTopNewsSection(state),
-                  const RSizedBox(
-                    height: 20,
-                  ),
                   SliverPinnedHeader(child: _categoryMenuList()),
                   const RSizedBox(
                     height: 20,
@@ -140,8 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _categoryMenuList() {
     return Container(
       color: context.isDark ? AppColors.black : Colors.white,
-      margin: EdgeInsets.only(bottom: 5),
-      height: 44.h,
+      margin: const EdgeInsets.only(bottom: 5),
+      padding: EdgeInsets.only(top: 20.h, bottom: 10),
+      height: 70.h,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: AppConst.CATEGORY_MENU_LIST.length,

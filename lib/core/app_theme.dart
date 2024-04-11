@@ -10,6 +10,8 @@ class AppTheme {
       useMaterial3: true,
       scaffoldBackgroundColor: Colors.white,
       iconTheme: const IconThemeData(color: AppColors.black),
+      bottomNavigationBarTheme:
+          BottomNavigationBarThemeData(backgroundColor: AppColors.white),
       appBarTheme: appBarTheme(),
       textTheme: textTheme());
 
@@ -21,6 +23,8 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.black,
       iconTheme: const IconThemeData(color: Colors.white),
       appBarTheme: const AppBarTheme(backgroundColor: AppColors.black),
+      bottomNavigationBarTheme:
+          BottomNavigationBarThemeData(backgroundColor: AppColors.black),
       textTheme: TextTheme(
           displayLarge: TextStyle(
               fontFamily: 'Montserrat',
