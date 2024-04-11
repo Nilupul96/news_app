@@ -10,3 +10,7 @@ abstract class HomeEvent extends Equatable {
 class GetArticles extends HomeEvent {
   const GetArticles();
 }
+
+class SetHomeScreenLoading extends HomeEvent {
+  const SetHomeScreenLoading();
+}
