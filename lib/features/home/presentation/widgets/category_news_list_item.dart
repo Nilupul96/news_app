@@ -38,6 +38,11 @@ class CategoryNewsListTile extends StatelessWidget {
                         child: CachedNetworkImage(
                           imageUrl: article.urlToImage!,
                           fit: BoxFit.cover,
+                          errorWidget: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(Icons.error_outline),
+                            );
+                          },
                         ),
                       )
                     : const SizedBox(),

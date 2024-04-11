@@ -24,10 +24,14 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
             ? Hero(
                 tag: imageUrl!,
                 child: CachedNetworkImage(
-                  imageUrl: imageUrl!,
-                  fit: BoxFit.cover,
-                  height: double.infinity,
-                ),
+                    imageUrl: imageUrl!,
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                    errorWidget: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(Icons.error_outline),
+                      );
+                    }),
               )
             : Container(
                 width: double.infinity,

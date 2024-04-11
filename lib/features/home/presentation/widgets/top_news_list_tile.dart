@@ -38,10 +38,14 @@ class TopNewsListTile extends StatelessWidget {
                   ).createShader(rect),
                   blendMode: BlendMode.darken,
                   child: CachedNetworkImage(
-                    imageUrl: article.urlToImage!,
-                    fit: BoxFit.cover,
-                    height: double.infinity,
-                  ),
+                      imageUrl: article.urlToImage!,
+                      fit: BoxFit.cover,
+                      height: double.infinity,
+                      errorWidget: (context, error, stackTrace) {
+                        return const Center(
+                          child: Icon(Icons.error_outline),
+                        );
+                      }),
                 ),
               ),
             Align(
