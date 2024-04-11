@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:news_app/features/home/presentation/pages/onjboarding_screen.dart';
+import 'package:news_app/features/home/presentation/pages/select_country_screen.dart';
 import 'package:news_app/features/home/presentation/pages/settings_screen.dart';
 import 'package:news_app/features/home/presentation/pages/splash_screen.dart';
 import '../features/home/domain/entities/article.dart';
@@ -21,6 +22,11 @@ class AppRoutes {
         builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
+        name: SelectCountryScreen.routeName,
+        path: '/select-country',
+        builder: (context, state) => const SelectCountryScreen(),
+      ),
+      GoRoute(
         name: HomeScreen.routeName,
         path: '/home-screen',
         builder: (context, state) => const HomeScreen(),
@@ -35,7 +41,7 @@ class AppRoutes {
       GoRoute(
         name: SettingsScreen.routeName,
         path: '/settings',
-        builder: (context, state) => SettingsScreen(),
+        builder: (context, state) => const SettingsScreen(),
       ),
     ],
   );

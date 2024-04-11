@@ -30,6 +30,7 @@ dependencies:
   adaptive_theme: ^3.6.0
   shared_preferences: ^2.2.2
   country_code_picker: ^3.0.0
+  rive: ^0.13.1
   
 
 

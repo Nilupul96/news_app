@@ -4,4 +4,5 @@ class AppAssets {
   static String onboarding2 = 'lib/assets/images/onboarding2.jpg';
   static String onboarding3 = 'lib/assets/images/onboarding3.jpg';
   static String onboarding4 = 'lib/assets/images/onboarding4.jpg';
+  static String earthAnim = 'lib/assets/images/earth.riv';
 }

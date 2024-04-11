@@ -11,6 +11,7 @@ class LocalStorage {
   LocalStorage._internal();
 
   static String get IS_SHOW_ONBOARDING => 'com.news4u.app.isShowOnboarding';
+  static String get COUNTRY_CODE => 'com.news4u.app.countryCode';
 
   Future<bool?> getShowOnboarding() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -21,5 +22,16 @@ class LocalStorage {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(IS_SHOW_ONBOARDING, isShow);
     Log.info("$isShow save in local");
+  }
+
+  Future<bool?> getCountryCode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(COUNTRY_CODE);
+  }
+
+  Future<void> setCountryCode(String countryCode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(COUNTRY_CODE, countryCode);
+    Log.info("$countryCode save in local");
   }
 }

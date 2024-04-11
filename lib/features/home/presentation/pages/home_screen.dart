@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return const HomeShimmer();
       }
       if (state is HomeError) {
-        return Center(child: Text('error ${state.exception}'));
+        return Center(child: Text('${state.exception?.message}'));
       }
       if (state is HomeSuccess) {
         return RefreshIndicator(

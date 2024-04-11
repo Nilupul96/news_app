@@ -1,6 +1,9 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:news_app/core/helpers/local_storage.dart';
+import 'package:news_app/features/home/presentation/pages/select_country_screen.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../core/helpers/app_logger.dart';
@@ -58,6 +61,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         return ChangeThemeBottomSheet();
                       },
                     )),
+            ListTile(
+                title: Text('Select Country',
+                    style: Theme.of(context).textTheme.displayMedium),
+                trailing: Text(
+                  AdaptiveTheme.of(context).mode.modeName,
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+                onTap: () => context.pushNamed(SelectCountryScreen.routeName))
           ],
         ),
       ),
