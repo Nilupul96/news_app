@@ -7,5 +7,5 @@ class ShimmerConfig {
   static Color highlightColor = Colors.grey.shade100;
   static Color darkModeBaseColor = Colors.grey.shade800;
   static Color darkModeHighlightColor = Colors.grey.shade600;
-  static Duration period = Duration(milliseconds: 1500);
+  static Duration period = const Duration(milliseconds: 1500);
 }

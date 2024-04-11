@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: (_, child) {
           return BlocProvider<HomeBloc>(
-              create: (context) => sl()..add(GetArticles()),
+              create: (context) => sl()..add(const GetArticles()),
               child: AdaptiveTheme(
                 light: AppTheme.appLightTheme,
                 dark: AppTheme.darkTheme,

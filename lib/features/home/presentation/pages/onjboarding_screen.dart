@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/app_assets.dart';
 import 'package:news_app/core/helpers/local_storage.dart';
-import 'package:news_app/features/home/presentation/pages/home_screen.dart';
+import 'package:news_app/features/home/init_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/widgets/main_btn.dart';
@@ -181,7 +181,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     .copyWith(
                                         color: AppColors.primaryRed,
                                         fontSize: 32.sp)),
-                            TextSpan(text: "in"),
+                            const TextSpan(text: "in"),
                           ])),
                       Text(
                         "NewS4U",
@@ -223,7 +223,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onClick: () async {
                           if (isLastPage) {
                             LocalStorage().setShowOnboarding(true);
-                            context.goNamed(HomeScreen.routeName);
+                            context.goNamed(InitScreen.routeName);
                             return;
                           }
                           controller.nextPage(

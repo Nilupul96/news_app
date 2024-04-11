@@ -2,10 +2,8 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:news_app/core/helpers/local_storage.dart';
 import 'package:news_app/features/home/presentation/pages/select_country_screen.dart';
 
-import '../../../../core/app_colors.dart';
 import '../../../../core/helpers/app_logger.dart';
 import '../widgets/change_theme_bottom_drawer.dart';
 
@@ -35,7 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Log.info("${AdaptiveTheme.of(context).mode}");
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -52,13 +50,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 onTap: () => showModalBottomSheet(
                       context: context,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(16),
                         topRight: Radius.circular(16),
                       )),
                       builder: (BuildContext context) {
-                        return ChangeThemeBottomSheet();
+                        return const ChangeThemeBottomSheet();
                       },
                     )),
             ListTile(

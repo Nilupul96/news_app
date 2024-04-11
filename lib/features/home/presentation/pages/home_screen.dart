@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:news_app/core/app_colors.dart';
 import 'package:news_app/core/helpers/extentions.dart';
-import 'package:news_app/features/home/presentation/pages/settings_screen.dart';
 import 'package:news_app/features/home/presentation/widgets/top_news_list_tile.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
