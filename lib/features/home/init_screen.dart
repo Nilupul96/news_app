@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/helpers/extentions.dart';
+import 'package:news_app/features/discover/presentation/pages/discover_screen.dart';
 import 'package:news_app/features/home/presentation/pages/home_screen.dart';
 
 import '../../core/app_colors.dart';
@@ -17,7 +18,7 @@ class InitScreen extends StatefulWidget {
 class _InitScreenState extends State<InitScreen> {
   final List<Widget> _screens = const [
     HomeScreen(),
-    HomeScreen(),
+    DiscoverScreen(),
     HomeScreen(),
     SettingsScreen()
   ];

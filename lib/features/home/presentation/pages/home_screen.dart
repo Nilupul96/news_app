@@ -48,7 +48,29 @@ class _HomeScreenState extends State<HomeScreen> {
         return const HomeShimmer();
       }
       if (state is HomeError) {
-        return Center(child: Text('${state.exception?.message}'));
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('${state.exception?.message}'),
+              SizedBox(height: 20),
+              InkWell(
+                  onTap: () {
+                    BlocProvider.of<HomeBloc>(context, listen: false)
+                        .add(const SetHomeScreenLoading());
+                    BlocProvider.of<HomeBloc>(context, listen: false)
+                        .add(const GetArticles());
+                  },
+                  child: Text(
+                    'Try again',
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall!
+                        .copyWith(color: AppColors.primaryRed),
+                  )),
+            ],
+          ),
+        );
       }
       if (state is HomeSuccess) {
         return RefreshIndicator(

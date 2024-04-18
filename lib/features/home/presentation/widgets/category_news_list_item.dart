@@ -23,11 +23,11 @@ class CategoryNewsListTile extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             color: AppColors.lightBlue.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(25)),
+            borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(16),
               child: Container(
                 width: 100,
                 height: 100,

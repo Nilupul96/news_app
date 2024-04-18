@@ -20,12 +20,12 @@ class TopNewsListTile extends StatelessWidget {
         width: ScreenUtil().screenWidth,
         decoration: BoxDecoration(
             color: AppColors.lightBlue.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(25)),
+            borderRadius: BorderRadius.circular(16)),
         child: Stack(
           children: [
             if (article.urlToImage != null)
               ClipRRect(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(16),
                 child: ShaderMask(
                   shaderCallback: (rect) => LinearGradient(
                     begin: Alignment.bottomCenter,

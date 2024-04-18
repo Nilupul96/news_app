@@ -13,8 +13,10 @@ class AppTheme {
       bottomNavigationBarTheme:
           const BottomNavigationBarThemeData(backgroundColor: AppColors.white),
       appBarTheme: appBarTheme(),
-      textTheme: textTheme());
-
+      textTheme: textTheme(),
+      inputDecorationTheme: InputDecorationTheme(
+          fillColor: AppColors.white,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16))));
   static ThemeData darkTheme = ThemeData(
       brightness: Brightness.dark,
       fontFamily: 'Montserrat',
@@ -22,7 +24,13 @@ class AppTheme {
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.black,
       iconTheme: const IconThemeData(color: Colors.white),
-      appBarTheme: const AppBarTheme(backgroundColor: AppColors.black),
+      appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.black,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w700,
+              fontSize: 16.sp)),
       bottomNavigationBarTheme:
           const BottomNavigationBarThemeData(backgroundColor: AppColors.black),
       textTheme: TextTheme(
@@ -40,7 +48,10 @@ class AppTheme {
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w400,
               color: AppColors.white,
-              fontSize: 14.sp)));
+              fontSize: 14.sp)),
+      inputDecorationTheme: InputDecorationTheme(
+          fillColor: AppColors.black,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16))));
 
   static TextTheme textTheme() => TextTheme(
       displayLarge: TextStyle(
@@ -57,6 +68,12 @@ class AppTheme {
           fontWeight: FontWeight.w400,
           fontSize: 14.sp));
 
-  static AppBarTheme appBarTheme() =>
-      const AppBarTheme(backgroundColor: Colors.white);
+  static AppBarTheme appBarTheme() => AppBarTheme(
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w700,
+          color: AppColors.black,
+          fontSize: 16.sp));
 }
