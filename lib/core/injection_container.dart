@@ -10,9 +10,9 @@ final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
   //get articles section
-  sl.registerFactory<HomeBloc>(() => HomeBloc(sl<GetArticleUseCase>()));
-  sl.registerLazySingleton<GetArticleUseCase>(
-      () => GetArticleUseCase(sl<ArticleRepository>()));
+  sl.registerFactory<HomeBloc>(() => HomeBloc(sl<GetTopArticleUseCase>()));
+  sl.registerLazySingleton<GetTopArticleUseCase>(
+      () => GetTopArticleUseCase(sl<ArticleRepository>()));
   sl.registerLazySingleton<ArticleRepository>(
       () => ArticleRepositoryImpl(sl<ArticleService>()));
   sl.registerLazySingleton<ArticleService>(() => ArticleServiceImpl());

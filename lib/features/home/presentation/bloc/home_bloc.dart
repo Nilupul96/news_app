@@ -9,14 +9,14 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final GetArticleUseCase _getArticleUseCase;
+  final GetTopArticleUseCase _getArticleUseCase;
 
   HomeBloc(this._getArticleUseCase) : super(HomeLoading()) {
-    on<GetArticles>(onGetArticle);
+    on<GetTopArticles>(onGetTopArticle);
     on<SetHomeScreenLoading>(setHomeScreenLoading);
   }
 
-  void onGetArticle(GetArticles event, Emitter<HomeState> emit) async {
+  void onGetTopArticle(GetTopArticles event, Emitter<HomeState> emit) async {
     Result result = await _getArticleUseCase();
     if (result.exception != null) {
       emit(HomeError(result.exception));

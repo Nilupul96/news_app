@@ -25,7 +25,7 @@ class _NewsByCategoryScreenState extends State<NewsByCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Hero(tag: widget.category, child: Text('${widget.category}')),
+        title: Hero(tag: widget.category, child: Text(widget.category)),
       ),
       body: RefreshIndicator(
         onRefresh: () async {},

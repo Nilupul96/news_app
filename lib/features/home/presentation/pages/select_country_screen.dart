@@ -18,9 +18,27 @@ class SelectCountryScreen extends StatefulWidget {
 }
 
 class _SelectCountryScreenState extends State<SelectCountryScreen> {
-  String selectedCountryCode = 'us';
-  Future<void> setUserCounty() async {
-    await LocalStorage().setCountryCode(selectedCountryCode);
+  String? initialCountryCode;
+  String? selectedCounty;
+
+  @override
+  void initState() {
+    super.initState();
+    setInitialUserCounty();
+  }
+
+  Future<void> setUserCounty(String countryCode) async {
+    await LocalStorage().setCountryCode(countryCode);
+  }
+
+  Future<void> setInitialUserCounty() async {
+    String? savedCountryCode = await LocalStorage().getCountryCode();
+    Log.debug("saved country code: $savedCountryCode");
+    if (savedCountryCode != null) {
+      setState(() {
+        initialCountryCode = savedCountryCode;
+      });
+    }
   }
 
   @override
@@ -54,7 +72,7 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
                       onChanged: (CountryCode? country) {
                         if (country != null) {
                           setState(() {
-                            selectedCountryCode = country.code ?? 'us';
+                            selectedCounty = country.code ?? 'us';
                             Log.debug(
                                 'select country- ${country.code} ${country.name}');
                           });
@@ -62,7 +80,7 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
                       },
                       dialogBackgroundColor:
                           context.isDark ? Colors.black : Colors.white,
-                      initialSelection: 'us',
+                      initialSelection: initialCountryCode ?? 'us',
                       countryFilter: AppConst.Country_code_LIST,
                       showOnlyCountryWhenClosed: false,
                       alignLeft: false,
@@ -102,8 +120,12 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 40),
                   child: MainBtn(
-                    onClick: () {},
-                    lbl: "Next",
+                    onClick: () {
+                      if (selectedCounty != null) {
+                        setUserCounty(selectedCounty!);
+                      }
+                    },
+                    lbl: initialCountryCode == null ? "Next" : "Save",
                   ),
                 ),
               ),

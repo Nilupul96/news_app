@@ -7,10 +7,18 @@ abstract class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetArticles extends HomeEvent {
-  const GetArticles();
+class GetTopArticles extends HomeEvent {
+  const GetTopArticles();
 }
 
 class SetHomeScreenLoading extends HomeEvent {
   const SetHomeScreenLoading();
+}
+
+class SetUserCountryCode extends HomeEvent {
+  const SetUserCountryCode();
+}
+
+class SaveCountyLoading extends HomeEvent {
+  const SaveCountyLoading();
 }

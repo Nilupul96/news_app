@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     BlocProvider.of<HomeBloc>(context, listen: false)
                         .add(const SetHomeScreenLoading());
                     BlocProvider.of<HomeBloc>(context, listen: false)
-                        .add(const GetArticles());
+                        .add(const GetTopArticles());
                   },
                   child: Text(
                     'Try again',
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BlocProvider.of<HomeBloc>(context, listen: false)
                 .add(const SetHomeScreenLoading());
             BlocProvider.of<HomeBloc>(context, listen: false)
-                .add(const GetArticles());
+                .add(const GetTopArticles());
           },
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),

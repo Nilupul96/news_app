@@ -24,9 +24,9 @@ class LocalStorage {
     Log.info("$isShow save in local");
   }
 
-  Future<bool?> getCountryCode() async {
+  Future<String?> getCountryCode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(COUNTRY_CODE);
+    return prefs.getString(COUNTRY_CODE);
   }
 
   Future<void> setCountryCode(String countryCode) async {

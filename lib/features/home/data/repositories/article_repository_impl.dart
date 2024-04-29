@@ -9,7 +9,12 @@ class ArticleRepositoryImpl implements ArticleRepository {
       : _articleService = articleService;
 
   @override
-  Future<Result> getArticles() async {
-    return await _articleService.fetchArticle();
+  Future<Result> getTopArticles() async {
+    return await _articleService.fetchTopArticle();
+  }
+
+  @override
+  Future<Result> getAllArticles() async {
+    return await _articleService.fetchTopArticle();
   }
 }
