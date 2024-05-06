@@ -1,7 +1,9 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:news_app/features/home/presentation/pages/select_country_screen.dart';
 
 import '../../../../core/helpers/app_logger.dart';
@@ -59,14 +61,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         return const ChangeThemeBottomSheet();
                       },
                     )),
-            ListTile(
-                title: Text('Select Country',
-                    style: Theme.of(context).textTheme.displayMedium),
-                trailing: Text(
-                  AdaptiveTheme.of(context).mode.modeName,
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                onTap: () => context.pushNamed(SelectCountryScreen.routeName))
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return ListTile(
+                    title: Text('Select Country',
+                        style: Theme.of(context).textTheme.displayMedium),
+                    trailing: Text(
+                      state.countryName ?? '',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                    onTap: () =>
+                        context.pushNamed(SelectCountryScreen.routeName));
+              },
+            )
           ],
         ),
       ),

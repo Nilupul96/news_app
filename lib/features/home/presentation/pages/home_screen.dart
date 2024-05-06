@@ -113,12 +113,12 @@ class _HomeScreenState extends State<HomeScreen> {
           PageView.builder(
               controller: controller,
               scrollDirection: Axis.horizontal,
-              itemCount: state.articleList!.length > 10
+              itemCount: state.topArticleList!.length > 10
                   ? 10
-                  : state.articleList!.length,
+                  : state.topArticleList!.length,
               physics: const ClampingScrollPhysics(),
               itemBuilder: (context, index) {
-                return TopNewsListTile(article: state.articleList![index]);
+                return TopNewsListTile(article: state.topArticleList![index]);
               }),
           Positioned(
               bottom: 20.h,
@@ -129,9 +129,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Center(
                   child: SmoothPageIndicator(
                       controller: controller,
-                      count: state.articleList!.length > 10
+                      count: state.topArticleList!.length > 10
                           ? 10
-                          : state.articleList!.length,
+                          : state.topArticleList!.length,
                       effect: WormEffect(
                           dotWidth: 20.w,
                           type: WormType.thinUnderground,
@@ -193,11 +193,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildNewsListByCategory(HomeSuccess state) {
     return ListView.builder(
-        itemCount: state.articleList!.length,
+        itemCount: state.topArticleList!.length,
         physics: const ClampingScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return CategoryNewsListTile(article: state.articleList![index]);
+          return CategoryNewsListTile(article: state.topArticleList![index]);
         });
   }
 }

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:news_app/core/helpers/local_storage.dart';
 import 'package:news_app/core/network/net_exception.dart';
 import 'package:news_app/features/home/domain/entities/article.dart';
 import 'package:news_app/features/home/domain/usecases/get_article.dart';
-import '../../../../core/helpers/app_logger.dart';
 import '../../../../core/network/net_result.dart';
 part 'home_event.dart';
 part 'home_state.dart';
@@ -14,6 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._getArticleUseCase) : super(HomeLoading()) {
     on<GetTopArticles>(onGetTopArticle);
     on<SetHomeScreenLoading>(setHomeScreenLoading);
+    on<SetUserCountryCode>(setUserCountryCode);
   }
 
   void onGetTopArticle(GetTopArticles event, Emitter<HomeState> emit) async {
@@ -29,5 +30,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void setHomeScreenLoading(
       SetHomeScreenLoading event, Emitter<HomeState> emit) async {
     emit(HomeLoading());
+  }
+
+  void setUserCountryCode(
+      SetUserCountryCode event, Emitter<HomeState> emit) async {
+    emit(CountrySaveLoading());
+    try {
+      await LocalStorage().setCountryCode(event.countryCode);
+      emit(CountrySaveSuccess(
+          countryName: event.countryName, countryCode: event.countryCode));
+    } catch (e) {
+      emit(CountrySaveError(error: "Country save Error $e"));
+    }
   }
 }

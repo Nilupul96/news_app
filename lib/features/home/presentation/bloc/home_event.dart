@@ -16,9 +16,7 @@ class SetHomeScreenLoading extends HomeEvent {
 }
 
 class SetUserCountryCode extends HomeEvent {
-  const SetUserCountryCode();
-}
-
-class SaveCountyLoading extends HomeEvent {
-  const SaveCountyLoading();
+  final String countryCode;
+  final String countryName;
+  const SetUserCountryCode(this.countryCode, this.countryName);
 }

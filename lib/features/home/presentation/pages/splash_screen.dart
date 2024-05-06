@@ -24,10 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
     bool? isShowedOnboarding = await LocalStorage().getShowOnboarding();
     if (!mounted) return;
     Log.debug("Is showed onboarding --$isShowedOnboarding");
-    if (isShowedOnboarding != null && isShowedOnboarding) {
-      context.goNamed(InitScreen.routeName);
-      return;
-    }
+    // if (isShowedOnboarding != null && isShowedOnboarding) {
+    //   context.goNamed(InitScreen.routeName);
+    //   return;
+    // }
     context.goNamed(OnboardingScreen.routeName);
   }
 
