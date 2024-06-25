@@ -60,6 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         .add(const SetHomeScreenLoading());
                     BlocProvider.of<HomeBloc>(context, listen: false)
                         .add(const GetTopArticles());
+                    BlocProvider.of<HomeBloc>(context, listen: false)
+                        .add(const GetAllArticles());
                   },
                   child: Text(
                     'Try again',
@@ -79,6 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 .add(const SetHomeScreenLoading());
             BlocProvider.of<HomeBloc>(context, listen: false)
                 .add(const GetTopArticles());
+            BlocProvider.of<HomeBloc>(context, listen: false)
+                .add(const GetAllArticles());
           },
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
@@ -87,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
               MultiSliver(
                 children: [
                   _buildTopNewsSection(state),
-                  SliverPinnedHeader(child: _categoryMenuList()),
+                  // SliverPinnedHeader(child: _categoryMenuList()),
                   const RSizedBox(
                     height: 20,
                   ),

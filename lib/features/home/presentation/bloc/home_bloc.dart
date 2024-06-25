@@ -5,16 +5,20 @@ import 'package:news_app/core/network/net_exception.dart';
 import 'package:news_app/features/home/domain/entities/article.dart';
 import 'package:news_app/features/home/domain/usecases/get_article.dart';
 import '../../../../core/network/net_result.dart';
+import '../../domain/usecases/get_all_articles.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTopArticleUseCase _getArticleUseCase;
+  final GetAllArticleUseCase _getAllArticleUseCase;
 
-  HomeBloc(this._getArticleUseCase) : super(HomeLoading()) {
+  HomeBloc(this._getArticleUseCase, this._getAllArticleUseCase)
+      : super(HomeLoading()) {
     on<GetTopArticles>(onGetTopArticle);
     on<SetHomeScreenLoading>(setHomeScreenLoading);
     on<SetUserCountryCode>(setUserCountryCode);
+    on<GetAllArticles>(onGetAllArticle);
   }
 
   void onGetTopArticle(GetTopArticles event, Emitter<HomeState> emit) async {
@@ -25,6 +29,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (result.exception == null) {
       emit(HomeSuccess(result.result));
     }
+  }
+
+  void onGetAllArticle(GetAllArticles event, Emitter<HomeState> emit) async {
+    Result result = await _getAllArticleUseCase(
+        params:
+            GetAllArticlesParams(event.countryCode, event.query, event.page));
+    if (result.exception != null) {
+      emit(HomeError(result.exception));
+    }
+    if (result.exception == null) {
+      emit(HomeSuccess(result.result));
+    }
+   
   }
 
   void setHomeScreenLoading(

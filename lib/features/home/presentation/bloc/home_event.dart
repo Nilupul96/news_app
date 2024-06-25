@@ -11,6 +11,13 @@ class GetTopArticles extends HomeEvent {
   const GetTopArticles();
 }
 
+class GetAllArticles extends HomeEvent {
+  final String? query;
+  final int? page;
+  final String? countryCode;
+  const GetAllArticles({this.query, this.page, this.countryCode});
+}
+
 class SetHomeScreenLoading extends HomeEvent {
   const SetHomeScreenLoading();
 }

@@ -2,12 +2,14 @@ part of 'home_bloc.dart';
 
 abstract class HomeState extends Equatable {
   final List<ArticleEntity>? topArticleList;
+  final List<ArticleEntity>? allArticleList;
   final NetException? exception;
   final String? countryCode;
   final String? countryName;
 
   const HomeState({
     this.topArticleList,
+    this.allArticleList,
     this.exception,
     this.countryCode,
     this.countryName,
@@ -22,8 +24,9 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeSuccess extends HomeState {
-  const HomeSuccess(List<ArticleEntity> articleList)
-      : super(topArticleList: articleList);
+  const HomeSuccess(
+    List<ArticleEntity> articleList,
+  ) : super(topArticleList: articleList);
 }
 
 class HomeError extends HomeState {

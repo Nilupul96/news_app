@@ -78,9 +78,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   }
                 });
               },
-              children: [],
+              children: _pageList(),
             ),
-            _pageBody(),
+            // _pageBody(),
             Positioned(
                 bottom: 40.h,
                 left: 0,
@@ -114,8 +114,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             context.goNamed(InitScreen.routeName);
                             return;
                           }
-                          liquidController.animateToPage(
-                              page: liquidController.currentPage + 1);
+                          controller.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.bounceIn);
                         },
                       ),
                     ],
@@ -141,8 +142,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               isLastPage = false;
             }
             currentPage = activePageIndex;
-            controller.nextPage(
-                duration: Duration(seconds: 1), curve: Curves.bounceIn);
+            controller.jumpTo(2);
+            // controller.nextPage(
+            //     duration: const Duration(seconds: 1), curve: Curves.bounceIn);
           });
         },
         enableSideReveal: false);

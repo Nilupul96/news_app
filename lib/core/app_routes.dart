@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/features/discover/presentation/pages/discover_screen.dart';
 import 'package:news_app/features/discover/presentation/pages/news_by_category_screen.dart';
 import 'package:news_app/features/home/init_screen.dart';
-import 'package:news_app/features/home/presentation/pages/onjboarding_screen.dart';
+import 'package:news_app/features/home/presentation/pages/onboarding_screen.dart';
 import 'package:news_app/features/home/presentation/pages/select_country_screen.dart';
 import 'package:news_app/features/home/presentation/pages/settings_screen.dart';
 import 'package:news_app/features/home/presentation/pages/splash_screen.dart';

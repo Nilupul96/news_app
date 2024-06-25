@@ -14,7 +14,9 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<Result> getAllArticles() async {
-    return await _articleService.fetchTopArticle();
+  Future<Result> getAllArticles(
+      {String? searchQuery, int? page, String? countryCode}) async {
+    return await _articleService.fetchAllArticle(
+        searchQuery: searchQuery, page: page, countryCode: countryCode);
   }
 }

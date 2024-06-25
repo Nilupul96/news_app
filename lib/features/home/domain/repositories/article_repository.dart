@@ -2,5 +2,6 @@ import '../../../../core/network/net_result.dart';
 
 abstract class ArticleRepository {
   Future<Result> getTopArticles();
-  Future<Result> getAllArticles();
+  Future<Result> getAllArticles(
+      {String? searchQuery, int? page, String? countryCode});
 }

@@ -10,6 +10,8 @@ import '../../../../core/network/net_url.dart';
 
 abstract class ArticleService {
   Future<Result> fetchTopArticle();
+  Future<Result> fetchAllArticle(
+      {String? searchQuery, int? page, String? countryCode});
 }
 
 class ArticleServiceImpl implements ArticleService {
@@ -42,13 +44,18 @@ class ArticleServiceImpl implements ArticleService {
     }
   }
 
-  Future<Result> fetchAllArticles() async {
+  @override
+  Future<Result> fetchAllArticle(
+      {String? searchQuery = 'bit', int? page, String? countryCode}) async {
     Result result = Result();
     try {
       var net = Net(
           url: URL.GET_ALL_ARTICLE,
           method: NetMethod.GET,
-          queryParam: {'country': 'us', 'apiKey': AppConst.API_KEY});
+          queryParam: {'apiKey': AppConst.API_KEY, 'page': '${page ?? 1}'});
+      // if (searchQuery != null) {
+      net.queryParam?.addAll({'q': searchQuery ?? 'bit'});
+      // }
       result = await net.perform();
       if (result.exception == null && result.result != "") {
         result.result = List<ArticleModel>.from(
