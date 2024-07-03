@@ -1,4 +1,5 @@
 # News4U
+![alt text](Screenshot_1712842017-removebg-preview.png)
 
 News4U is a modern news application developed using Flutter with a clean architecture approach. It leverages RapidAPI to fetch the latest news and incorporates a range of features to enhance user experience, including animations, offline capabilities, and customizable themes.
 
