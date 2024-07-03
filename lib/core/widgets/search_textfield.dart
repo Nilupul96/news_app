@@ -2,26 +2,34 @@ import 'package:flutter/material.dart';
 
 class SearchTextField extends StatelessWidget {
   final TextEditingController controller;
-  SearchTextField({super.key, required this.controller});
-  final FocusNode searchFocusNode = FocusNode();
+  final VoidCallback closeSearch;
+  final FocusNode searchFocusNode;
+  final ValueChanged<String>? onChanged;
+  SearchTextField(
+      {super.key,
+      required this.controller,
+      required this.closeSearch,
+      required this.onChanged,
+      required this.searchFocusNode});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       textInputAction: TextInputAction.search,
-      focusNode: FocusNode(),
+      focusNode: searchFocusNode,
+      onChanged: onChanged,
       decoration: InputDecoration(
           hintText: 'Search',
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          suffixIcon: controller.text.trim().isNotEmpty
-              ? IconButton(
-                  onPressed: () {
-                    controller.clear();
-                  },
-                  icon: const Icon(Icons.close))
-              : null),
+          suffixIcon: IconButton(
+              onPressed: () {
+                controller.clear();
+                FocusScope.of(context).unfocus();
+                closeSearch();
+              },
+              icon: const Icon(Icons.close))),
     );
   }
 }

@@ -38,9 +38,11 @@ class _NewsByCategoryScreenState extends State<NewsByCategoryScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  SearchTextField(
-                    controller: searchController,
-                  )
+                  // SearchTextField(
+                  //   controller: searchController,
+                  //   searchFocusNode: FocusNode(),
+                  //   closeSearch: () {},
+                  // )
                 ],
               ),
             ),

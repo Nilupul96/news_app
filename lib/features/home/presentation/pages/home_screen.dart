@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +10,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/const/app_const.dart';
 import '../../../../core/shimmers/home_shimmer.dart';
+import '../../../../core/widgets/search_textfield.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/category_news_list_item.dart';
 
@@ -22,10 +25,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   final controller = PageController(keepPage: true);
+  bool _isShowSearchBar = false;
+  TextEditingController searchController = TextEditingController();
+  FocusNode searchFocusNode = FocusNode();
+  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> searchArticle(String query) async {
+    if (_isShowSearchBar && query.trim().isNotEmpty) {
+      if (_debounce?.isActive ?? false) _debounce?.cancel();
+      _debounce = Timer(const Duration(milliseconds: 500), () {
+        BlocProvider.of<HomeBloc>(context, listen: false)
+            .add(GetAllArticles(query: query));
+      });
+    }
   }
 
   @override
@@ -38,6 +55,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontFamily: 'Blackness',
                   color: AppColors.primaryRed,
                   fontSize: 36.sp)),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  FocusScope.of(context).requestFocus(searchFocusNode);
+                  setState(() {
+                    _isShowSearchBar = true;
+                  });
+                },
+                icon: const Icon(Icons.search))
+          ],
+          bottom: _isShowSearchBar
+              ? PreferredSize(
+                  preferredSize: const Size.fromHeight(100),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
+                    child: SearchTextField(
+                      controller: searchController,
+                      searchFocusNode: searchFocusNode,
+                      onChanged: (value) => searchArticle(value),
+                      closeSearch: () {
+                        setState(() {
+                          _isShowSearchBar = false;
+                        });
+                      },
+                    ),
+                  ),
+                )
+              : null,
         ),
         body: _buildBody());
   }
@@ -53,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('${state.exception?.message}'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               InkWell(
                   onTap: () {
                     BlocProvider.of<HomeBloc>(context, listen: false)
@@ -81,11 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 .add(const SetHomeScreenLoading());
             BlocProvider.of<HomeBloc>(context, listen: false)
                 .add(const GetTopArticles());
-            BlocProvider.of<HomeBloc>(context, listen: false)
-                .add(const GetAllArticles());
+            // BlocProvider.of<HomeBloc>(context, listen: false)
+            //     .add(const GetAllArticles());
           },
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             controller: ScrollController(),
             slivers: [
               MultiSliver(
