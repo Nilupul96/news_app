@@ -11,6 +11,7 @@ News4U is a modern news application developed using Flutter with a clean archite
 - **News Categories**: Browse news articles by different categories such as sports, technology, business, and more.
 
 ## Screenshots
+![alt text](<Untitled design.png>)
 ![alt text](Screenshot_1719481141.png) ![alt text](Screenshot_1719481748.png) ![alt text](Screenshot_1719481061.png) ![alt text](Screenshot_1719481080.png)
 ![alt text](<Cream Modern Corporate Download Our App Minimal Instagram Story (1).png>)
 ![alt text](Screenshot_1719980059.png)
