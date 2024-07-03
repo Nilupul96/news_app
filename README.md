@@ -1,16 +1,25 @@
-# news_app
+# News4U
 
-A new Flutter project.
+News4U is a modern news application developed using Flutter with a clean architecture approach. It leverages RapidAPI to fetch the latest news and incorporates a range of features to enhance user experience, including animations, offline capabilities, and customizable themes.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Get Popular News**: Stay updated with the most popular news articles from around the world.
+- **Theme Support**: Switch between light and dark themes to suit your preference.
+- **Offline Use**: Access previously loaded news articles even when you're offline.
+- **Select Country**: Customize your news feed by selecting your preferred country.
+- **News Categories**: Browse news articles by different categories such as sports, technology, business, and more.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
+![alt text](Screenshot_1719481141.png) ![alt text](Screenshot_1719481748.png) ![alt text](Screenshot_1719481061.png) ![alt text](Screenshot_1719481080.png)
+![alt text](<Cream Modern Corporate Download Our App Minimal Instagram Story (1).png>)
+![alt text](Screenshot_1719980059.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Rapid News API : https://newsapi.org/docs/get-started
+
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
+
+
